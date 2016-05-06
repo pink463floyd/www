@@ -1,0 +1,50 @@
+<style>
+
+table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+}
+
+th, td {
+    padding: 5px;
+}
+
+th {
+    text-align: left;
+}
+
+table.names tr:nth-child(even) {
+    background-color: #f1f1c1;
+}
+
+table.names tr:nth-child(odd) {
+   background-color:#ffffff;
+}
+
+table.names th  {
+    background-color: #c1c1c1;
+}
+
+input[type="text"] {
+  font-size:25px
+}
+
+.date_button {
+     position: relative; 
+     height: 30px;
+     width: 40px;
+}
+
+.left_date_goto_button {
+     position: relative; 
+     left: 40px; 
+     height: 30px;
+     width: 140px;
+}
+.date_goto_button {
+     position: relative; 
+     height: 30px;
+     width: 140px;
+}
+
+</style>

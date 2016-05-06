@@ -1,0 +1,16 @@
+<!doctype html>
+<html ng-app="ABaseball">
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="3col-csstable.css"/>
+    <link rel="stylesheet" type="text/css" href="baseball.css"/>
+    <script src='controllers.js'></script>
+  </head>
+  <body>
+    <h1><a ng-href='#/'>2016 Baseball Pennant Race</h1>
+    <td><h2><a ng-href='#/al'>American League</a></h2></td>
+    <td><h2><a ng-href='#/nl'>National League</a></h2></td>
+    <td><h2><a ng-href='#/compare'>Comparisons</a></h2></td>
+    <div ng-view></div>
+  </body>
+</html>

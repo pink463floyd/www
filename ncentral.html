@@ -1,0 +1,30 @@
+<p> </p>
+<p> </p>
+<button class="date_goto_button" ng-click="setStartDate(date)">Season Start</button>
+<button class="date_button" ng-click="subDate(date)"><</button><input ng-model='date.text' size="11" input type="text"> <button class="date_button" ng-click="addDate(date)">></button>
+<button class="date_goto_button" ng-click="setYesterdayDate(date)">Yesterday's Standings</button>
+<p> </p>
+<p> </p>
+<div id="wrapper">
+   <div id="main">
+      <div id="center">
+         <h1  align="center">NL Central</h1>
+         <table class="names">
+            <tr>
+               <th>TEAM </td>
+               <th>WIN </td>
+               <th>LOSS </td>
+               <th>PCT </td>
+               <th>GB </td>
+            </tr>
+            <tr ng-repeat="item in items | filter:{league: 'NL'} | filter:{division: 'Central' } | filter:{date: date.text} "> 
+               <td>{{item.team}}</td>
+               <td>{{item.wins}}</td>
+               <td>{{item.losses}}</td>
+               <td>{{item.pct}}</td>
+               <td>{{item.GB}}</td>
+            </tr>
+         </table>
+      </div>
+   </div>
+</div>
