@@ -1,0 +1,17 @@
+[
+ {
+   name: "2",
+   headsign: "To Beach",
+   departure: "12:45"
+ },
+ {
+   name: "8",
+   headsign: "To Downtown",
+   departure: "12:45"
+ },
+ {
+   name: "9",
+   headsign: "To Museum",
+   departure: "12:45"
+ }
+]
