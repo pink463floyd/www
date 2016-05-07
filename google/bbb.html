@@ -41,13 +41,6 @@
           center: geoHome
         });
 
-  var marker2 = new google.maps.Marker({
-    position: geoHome,
-    map: map,
-    title: 'Hello World!'
-  });
-console.log(geoHome);
-
         directionsDisplay.setMap(map);
         directionsDisplay.setPanel(document.getElementById('right-panel'));
 
@@ -58,8 +51,6 @@ console.log(geoHome);
         onChangeHandler = function() {
           calculateAndDisplayRoute(directionsService, directionsDisplay);
         };
-        //document.getElementById('start').addEventListener('change', onChangeHandler);
-        //document.getElementById('end').addEventListener('change', onChangeHandler);
 
         var input = (document.getElementById('start'));
         var autocomplete = new google.maps.places.Autocomplete(input);
