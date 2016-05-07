@@ -71,6 +71,10 @@ console.log(geoHome);
         autocomplete2.bindTo('bounds', map);
         autocomplete2.addListener('place_changed', function() {});
 
+        makeMarker();
+      }
+
+      function makeMarker() {
         var infowindow = new google.maps.InfoWindow();
         var stopAPI = "/google/stops.json"
               $.getJSON( stopAPI, { })
@@ -116,21 +120,13 @@ console.log(geoHome);
 
                });
              });
-
-
-
-
       }
-
 
       function updateMap() {
         var geoOrigin = document.getElementById('start').value;
 
         geocoder.geocode( { 'address': geoOrigin}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-      //    map.setCenter(results[0].geometry.location);
-
-
           var originMarker = new google.maps.Marker({
             map: map,
             position: results[0].geometry.location
@@ -150,7 +146,6 @@ console.log(geoHome);
            alert("Geocode was not successful for the following reason: " + status);
         }
        });
-       //map.panTo(latLng);
       }
 
 
