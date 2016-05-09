@@ -67,15 +67,16 @@
 
       function makeMarker() {
         var infowindow = new google.maps.InfoWindow();
-        var stopAPI = "/google/stops.json"
+        //var stopAPI = "/google/stops.json"
+        var stopAPI = "http://463foobar.com:8000/api/stops/"
               $.getJSON( stopAPI, { })
               .done(function( data ) {
                  $.each( data, function( i, item )     {
-                   var latitude = item.stop_lat;
-                   var longitude = item.stop_lon;
-                   var desc = item.stop_desc;
+                   var latitude = item.latitude;
+                   var longitude = item.longitude;
+                   var desc = "desc desc"
                    var name = item.stop_name;
-                   var id = item.stop_id;
+                   var id = item.stop_code;
                    var stop = {};
                    stop = {
                      "latitude":  latitude,
@@ -84,7 +85,7 @@
                      "name":  name,
                      "id":  id
 		   }
-                   console.log(item.stop_lon);
+                   console.log(item.latitude);
 		   var stopLatLng = new google.maps.LatLng(latitude, longitude);
 		   var marker = new google.maps.Marker({position: stopLatLng, map: map, title: 'foo'});
 
@@ -92,7 +93,7 @@
 		    +
                     '<div id="siteNotice">'+
                     '</div>'+
-                    '<h1 id="stopName" class="stopName">' + desc + '</h1>' +
+                    '<h1 id="stopName" class="stopName">' + name + '</h1>' +
                     '<div id="bodyContent">';
 
                    routes = getRoutes(id, "xxx");
