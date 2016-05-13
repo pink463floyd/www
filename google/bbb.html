@@ -100,7 +100,7 @@
 
    function getRoutes(stopId, time, nm, mrkr, mp, stp, infndw) {
       var tmpData = ""; 
-      var departureAPI = "http://463foobar.com:8000/api/departures/08:00:00/4"
+      var departureAPI = "http://463foobar.com:8000/api/departures/08:00:00/"+stopId
       $.getJSON( departureAPI, { })
          .done(function( data ) {
             html='<IMG BORDER="0" ALIGN ="Left">'
@@ -109,10 +109,6 @@
             '</div>'+
             '<h1 id="stopName" class="stopName">' + nm + '</h1>' +
             '<div id="bodyContent">';
-                     //for (var i=0; i<data.length; i++) 
-                     //    var obj = data[i];
-                     //    console.log(obj.headsign);
-                     //    html=html+'<p>'+obj.name+' '+obj.headsign+' '+obj.departure+'</p>'
             $.each( data, function(i,item) {
                   console.log(item.route_short_name);
                    html=html+'<p>'+item.route_short_name+' '+item.trip_headsign+' '+item.min+'</p>'
