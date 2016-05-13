@@ -88,58 +88,40 @@
 		   var stopLatLng = new google.maps.LatLng(latitude, longitude);
 		   var marker = new google.maps.Marker({position: stopLatLng, map: map, title: 'foo'});
 
-                    html='<IMG BORDER="0" ALIGN ="Left">'
-		    +
-                    '<div id="siteNotice">'+
-                    '</div>'+
-                    '<h1 id="stopName" class="stopName">' + name + '</h1>' +
-                    '<div id="bodyContent">';
-
-                   //routes = getRoutes(id, "xxx");
-                   //console.log("back");
-                   //for (var i=0; i<routes.length; i++) {
-                   //    var obj = routes[i];
-                   //    html=html+'<p>'+obj.name+' '+obj.headsign+' '+obj.departure+'</p>'
-                   //}
-                   html=html+'</div>'+'</div>' ;
+                   html='scott' ;
 		   var infowindow = new google.maps.InfoWindow(
                     {content:html});
-               google.maps.event.addListener(marker, 'click', function() { 
-                    html='<IMG BORDER="0" ALIGN ="Left">'
-                    +
-                    '<div id="siteNotice">'+
-                    '</div>'+
-                    '<h1 id="stopName" class="stopName">' + name + '</h1>' +
-                    '<div id="bodyContent">';
-                     routes = getRoutes(id, "xxx");
-                     console.log("back");
-                     console.log(routes);
-                     for (var i=0; i<routes.length; i++) {
-                         var obj = routes[i];
-                         console.log(obj.headsign);
-                         html=html+'<p>'+obj.name+' '+obj.headsign+' '+obj.departure+'</p>'
-                    }
-                    html=html+'</div>'+'</div>' ;
-
-                      infowindow.setContent(html);
-                      infowindow.open(map,marker,stop); 
+                    google.maps.event.addListener(marker, 'click', function() { 
+                     getRoutes(id, "xxx", name, marker,map,stop,infowindow);
                    });
                });
              });
       }
 
-      function getRoutes(stopId, time) {
-        console.log("getRoutes")
-        var tmpData = ""; 
-        var departureAPI = "http://463foobar.com:8000/api/departures/08:00:00/4"
-              $.getJSON( departureAPI, { })
-              .done(function( data ) {
-                 tmpData = data;
-                 console.log('xxx');
-                 console.log(data);
-                 
-             });
-         return tmpData;
+   function getRoutes(stopId, time, nm, mrkr, mp, stp, infndw) {
+      var tmpData = ""; 
+      var departureAPI = "http://463foobar.com:8000/api/departures/08:00:00/4"
+      $.getJSON( departureAPI, { })
+         .done(function( data ) {
+            html='<IMG BORDER="0" ALIGN ="Left">'
+            +
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="stopName" class="stopName">' + nm + '</h1>' +
+            '<div id="bodyContent">';
+                     //for (var i=0; i<data.length; i++) 
+                     //    var obj = data[i];
+                     //    console.log(obj.headsign);
+                     //    html=html+'<p>'+obj.name+' '+obj.headsign+' '+obj.departure+'</p>'
+            $.each( data, function(i,item) {
+                  console.log(item.route_short_name);
+                   html=html+'<p>'+item.route_short_name+' '+item.trip_headsign+' '+item.min+'</p>'
+            });
+            html=html+'</div>'+'</div>' ;
+            console.log(html);
+            infndw.setContent(html);
+            infndw.open(mp,mrkr,stp); 
+          });
       }
       function updateMap() {
         var geoOrigin = document.getElementById('start').value;
