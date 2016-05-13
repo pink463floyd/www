@@ -85,7 +85,6 @@
                      "name":  name,
                      "id":  id
 		   }
-                   console.log(item.latitude);
 		   var stopLatLng = new google.maps.LatLng(latitude, longitude);
 		   var marker = new google.maps.Marker({position: stopLatLng, map: map, title: 'foo'});
 
@@ -96,46 +95,51 @@
                     '<h1 id="stopName" class="stopName">' + name + '</h1>' +
                     '<div id="bodyContent">';
 
-                   routes = getRoutes(id, "xxx");
-                   for (var i=0; i<routes.length; i++) {
-                         var obj = routes[i];
-                         console.log(obj.headsign);
-                         html=html+'<p>'+obj.name+' '+obj.headsign+' '+obj.departure+'</p>'
-                   }
+                   //routes = getRoutes(id, "xxx");
+                   //console.log("back");
+                   //for (var i=0; i<routes.length; i++) {
+                   //    var obj = routes[i];
+                   //    html=html+'<p>'+obj.name+' '+obj.headsign+' '+obj.departure+'</p>'
+                   //}
                    html=html+'</div>'+'</div>' ;
 		   var infowindow = new google.maps.InfoWindow(
                     {content:html});
-               google.maps.event.addListener(marker, 'click', function() { infowindow.open(map,marker,stop); });
+               google.maps.event.addListener(marker, 'click', function() { 
+                    html='<IMG BORDER="0" ALIGN ="Left">'
+                    +
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h1 id="stopName" class="stopName">' + name + '</h1>' +
+                    '<div id="bodyContent">';
+                     routes = getRoutes(id, "xxx");
+                     console.log("back");
+                     console.log(routes);
+                     for (var i=0; i<routes.length; i++) {
+                         var obj = routes[i];
+                         console.log(obj.headsign);
+                         html=html+'<p>'+obj.name+' '+obj.headsign+' '+obj.departure+'</p>'
+                    }
+                    html=html+'</div>'+'</div>' ;
+
+                      infowindow.setContent(html);
+                      infowindow.open(map,marker,stop); 
+                   });
                });
              });
       }
 
       function getRoutes(stopId, time) {
-//Build an internal API that given a stopId, returns a list of route names, headsigns, and departure times.
-//efective sql would be:
-//
-//select route_short_name, trips.trip_headsign, MIN(departure_time) from stop_times inner join trips on stop_times.trip_id = trips.trip_id inner join routes on trips.route_id=routes.route_id inner join stops on stop_times.stop_id = stops.stop_id where departure_time > '17:18:00' AND trips.service_id = '20160221_10' and stops.stop_id ='4' GROUP BY route_short_name, trips.trip_headsign; 
-          
-        data = 
-[
- {
-   name: "2",
-   headsign: "To Beach",
-   departure: "12:45"
- },
- {
-   name: "8",
-   headsign: "To Downtown",
-   departure: "12:45"
- },
- {
-   name: "9",
-   headsign: "To Museum",
-   departure: "12:45"
- }
-];
-
-          return data;
+        console.log("getRoutes")
+        var tmpData = ""; 
+        var departureAPI = "http://463foobar.com:8000/api/departures/08:00:00/4"
+              $.getJSON( departureAPI, { })
+              .done(function( data ) {
+                 tmpData = data;
+                 console.log('xxx');
+                 console.log(data);
+                 
+             });
+         return tmpData;
       }
       function updateMap() {
         var geoOrigin = document.getElementById('start').value;
