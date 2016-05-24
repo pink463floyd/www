@@ -121,10 +121,10 @@
             '<div id="bodyContent">';
             $.each( data, function(i,item) {
                   console.log(item.route_short_name);
-                   departure = '<p>'+ item.route_short_name + ' - ' + item.trip_headsign + ':  ' + item.departure_time; 
+                   route = '<p>'+ item.route_short_name + ' - ' + item.trip_headsign + ':  '; 
+                   departure = item.departure_time; 
                    delay  = ' [' + item.delay + ']' + '</p>';
-                   departure = departure + delay;
-                   html=html+departure;
+                   html=html+route+departure+delay;
             });
             html=html+'</div>'+'</div>' ;
             console.log(html);
