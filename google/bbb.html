@@ -77,14 +77,7 @@
                    var desc = "desc desc"
                    var name = item.stop_name;
                    var id = item.stop_code;
-                   var stop = {};
-                   stop = {
-                     "latitude":  latitude,
-                     "longitude": longitude,
-                     "desc":  desc,
-                     "name":  name,
-                     "id":  id
-		   }
+		   
 		   var stopLatLng = new google.maps.LatLng(latitude, longitude);
 		   var marker = new google.maps.Marker({position: stopLatLng, map: map, title: 'foo'});
 
@@ -92,7 +85,7 @@
                     {content:''});
                     google.maps.event.addListener(marker, 'click', function() { 
                      time = getTime();
-                     getRoutes(id, time, name, marker,map,stop,infowindow);
+                     getRoutes(id, time, name, marker,map,infowindow);
                    });
                });
              });
@@ -112,7 +105,7 @@
        console.log(time);
        return time;
    }
-   function getRoutes(stopId, tm, nm, mrkr, mp, stp, infndw) {
+   function getRoutes(stopId, tm, nm, mrkr, mp, infndw) {
       var tmpData = ""; 
       //var departureAPI = "http://463foobar.com:8000/api/departures/08:00:00/"+stopId
       var departureAPI = 
@@ -133,7 +126,7 @@
             html=html+'</div>'+'</div>' ;
             console.log(html);
             infndw.setContent(html);
-            infndw.open(mp,mrkr,stp); 
+            infndw.open(mp,mrkr); 
           });
       }
       function updateMap() {
