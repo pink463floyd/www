@@ -7,4 +7,5 @@
 #python /home/slarribeau/www/scrape.py > /home/slarribeau/www/controllers.2.js
 #source /home/slarribeau/src/python/dgango_parking/vpy2.7/bin/activate
 #python /home/slarribeau/src/python/dgango_parking/daemons/event_daemon.py
-
+source /home/slarribeau/src/python/django_bbb/vp27/bin/activate 
+python /home/slarribeau/src/python/django_bbb/bbb/daemon.py
