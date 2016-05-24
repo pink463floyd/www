@@ -76,7 +76,7 @@
                    var longitude = item.longitude;
                    var desc = "desc desc"
                    var name = item.stop_name;
-                   var id = item.stop_code;
+                   var stop_code = item.stop_code;
 		   
 		   var stopLatLng = new google.maps.LatLng(latitude, longitude);
 		   var marker = new google.maps.Marker({position: stopLatLng, map: map, title: 'foo'});
@@ -85,7 +85,7 @@
                     {content:''});
                     google.maps.event.addListener(marker, 'click', function() { 
                      time = getTime();
-                     getRoutes(id, time, name, marker,map,infowindow);
+                     getRoutes(stop_code, time, name, marker,map,infowindow);
                    });
                });
              });
@@ -105,11 +105,11 @@
        console.log(time);
        return time;
    }
-   function getRoutes(stopId, tm, nm, mrkr, mp, infndw) {
+   function getRoutes(stopCode, tm, nm, mrkr, mp, infndw) {
       var tmpData = ""; 
-      //var departureAPI = "http://463foobar.com:8000/api/departures/08:00:00/"+stopId
+      //var departureAPI = "http://463foobar.com:8000/api/departures/08:00:00/"+stopCode
       var departureAPI = 
-          "http://463foobar.com:8000/api/departures/" + tm + "/"+stopId
+          "http://463foobar.com:8000/api/departures/" + tm + "/"+stopCode
       console.log(departureAPI);
       $.getJSON( departureAPI, { })
          .done(function( data ) {
@@ -117,7 +117,7 @@
             +
             '<div id="siteNotice">'+
             '</div>'+
-            '<h1 id="stopName" class="stopName">' + nm + ': ' + stopId + '</h1>' +
+            '<h1 id="stopName" class="stopName">' + nm + ': ' + stopCode + '</h1>' +
             '<div id="bodyContent">';
             $.each( data, function(i,item) {
                   console.log(item.route_short_name);
