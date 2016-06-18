@@ -89,3 +89,34 @@
           }
      }
 */
+
+      body {
+         font-family: Arial, Helvetica, sans-serif;
+      } 
+      p {padding-left:160px;}
+      p.firstline {padding-top:160px;} 
+
+      #topdiv { 
+         position: fixed;
+	 top: 0px;
+	 left: 0px;
+	 width: 100%;
+	 color: #ffffff;
+	 background-color:#666666;
+	 padding: 20px;
+	 height:104; 
+	 z-index:2;
+      }
+
+      #sidediv { 
+         position: fixed;
+	 top: 144px;
+	 left: 0px;
+	 width: 107px;
+	 color: #ffffff;
+	 background-color:#666666;
+	 padding: 20px;
+	 height:100%;
+	 z-index:2;
+      }
+
