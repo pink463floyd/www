@@ -14,7 +14,7 @@
 	 z-index:3;
       }
 
-      #sidediv { 
+      .sidediv { 
          position: fixed;
 	 top: 144px;
 	 left: 0px;
@@ -24,6 +24,19 @@
 	 padding: 20px;
 	 height:100%;
 	 z-index:2;
+         transition: 0.5s;
+      }
+     .sidediv a {
+          padding: 8px 8px 8px 8px;
+          text-decoration: none;
+          font-size: 25px;
+          color: #ffffff;
+          display: block;
+          transition: 0.3s
+      }
+
+     .sidediv a:hover, .offcanvas a:focus{
+        color: #101010;
       }
 
       
