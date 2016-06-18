@@ -25,7 +25,7 @@
       <br>
        <input type="submit" value="Submit" onclick="onChangeHandler()">
 
-    <div id="floating-panel"></div>
+    <!-- <div id="floating-panel"></div> -->
     <div id="right-panel"></div>
     <div id="map-panel"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -44,9 +44,9 @@
         directionsDisplay.setMap(map);
         directionsDisplay.setPanel(document.getElementById('right-panel'));
 
-        var control = document.getElementById('floating-panel');
-        control.style.display = 'block';
-        map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+        //var control = document.getElementById('floating-panel');
+        //control.style.display = 'block';
+        //map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
         onChangeHandler = function() {
           calculateAndDisplayRoute(directionsService, directionsDisplay);
@@ -120,11 +120,18 @@
             '<h1 id="stopName" class="stopName">' + nm + ': ' + stopCode + '</h1>' +
             '<div id="bodyContent">';
             $.each( data, function(i,item) {
-                  console.log(item.route_short_name);
+                   console.log(item.route_short_name);
                    route = '<p>'+ item.route_short_name + ' - ' + item.trip_headsign + ':  '; 
-                   departure = item.departure_time; 
-                   delay  = ' [' + item.delay + ']' + '</p>';
-                   html=html+route+departure+delay;
+		   delay  = ' [' + item.delay + ']' + '</p>';
+                   if (item.delay == 32767) {
+		      //This is a 'static' departure time
+		      departure = item.departure_time
+                      html=html+route+departure+delay;
+                   } else {
+                      //This is a 'real time' departure, add delay to departure
+		      departure = item.departure_time + item.delay
+                      html=html+route+departure+delay;
+		   }
             });
             html=html+'</div>'+'</div>' ;
             console.log(html);
