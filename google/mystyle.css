@@ -6,7 +6,7 @@
             margin-left:145px;
             margin-top:160px;
       }
-      #overmap {position: absolute; top:60px; left:17px; z-index:99; }
+      #overmap {position: absolute; top:60px; left:17px; z-index:2; }
       #map-panel {
             position: static; 
             width:  1000px;
@@ -31,7 +31,7 @@
 	 background-color:#666666;
 	 padding: 20px;
 	 height:104; 
-	 z-index:2;
+	 z-index:3;
       }
 
       #sidediv { 
