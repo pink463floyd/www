@@ -8,18 +8,22 @@
   </head>
 
   <body>
-
       <div id="sidediv">
          <h1>Hello!</h1>
       </div>  
+
       <div id="topdiv">
           <img src="bus_logo.png" style="vertical-align:top"> 
           <h1 style="display:inline-block;padding-left:60px">Santa Monica Transit Viewer</h1>
       </div> 
+
       <p class="firstline"> BIG DOG </p>
       <p> dog </p>
 
-
+    <div id="wrapper">
+       <div id="map-panel"> 
+       </div>
+       <div id="overmap"> 
 
       <strong>Mode:</strong>
          <select id="mode">
@@ -38,9 +42,13 @@
       <br>
        <input type="submit" value="Submit" onclick="onChangeHandler()">
 
-    <!-- <div id="floating-panel"></div> -->
+       </div>
+    </div>
     <div id="right-panel"></div>
-    <div id="map-panel"></div>
+
+
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
       function initMap() {
