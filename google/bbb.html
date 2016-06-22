@@ -48,14 +48,16 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
+      zoomViewThreshold = 14;
       function initMap() {
         geoHome = {lat: 34.0219, lng: -118.4814}; //Santa Monica
         geocoder = new google.maps.Geocoder();
 
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
+	var zoomView=zoomViewThreshold+1;
         map = new google.maps.Map(document.getElementById('map-panel'), {
-          zoom: 13,
+          zoom: zoomView,
           center: geoHome
         });
 
@@ -79,7 +81,32 @@
         autocomplete2.bindTo('bounds', map);
         autocomplete2.addListener('place_changed', function() {});
 
+        markers = [];
         makeMarker();
+	setMarker() 
+console.log("aaa");
+console.log(map.getZoom());
+console.log("bbb");
+        map.addListener('zoom_changed', function() { 
+	  setMarker() 
+        });
+      }
+
+      function setMarker() {
+           testZoomLevel = map.getZoom();
+	   console.log(testZoomLevel);
+	   console.log(zoomViewThreshold);
+           if (testZoomLevel > zoomViewThreshold) {
+	      setMapOnAll(map);
+           } else {
+	      setMapOnAll(null);
+	   }
+      }
+
+      function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+	    markers[i].setMap(map);
+	}
       }
 
       function makeMarker() {
@@ -98,6 +125,7 @@
 		   var stopLatLng = new google.maps.LatLng(latitude, longitude);
 		   var marker = new google.maps.Marker({position: stopLatLng, map: map, title: 'foo'});
 
+                   markers.push(marker);
 		   var infowindow = new google.maps.InfoWindow(
                     {content:''});
                     google.maps.event.addListener(marker, 'click', function() { 
